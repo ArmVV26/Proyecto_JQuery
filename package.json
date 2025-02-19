@@ -1,0 +1,20 @@
+{
+  "type": "module",
+  "name": "proyecto_jquery",
+  "version": "1.0.0",
+  "description": "Proyecto dedicado a JQuery más el uso de APIs",
+  "scripts": {
+    "vigilar:css": "npx tailwindcss -i ./src/css/entrada.css -o ./src/css/salida.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArmVV26/Proyecto_JQuery.git"
+  },
+  "author": "Armando Vaquero",
+  "license": "ISC",
+  "devDependencies": {
+    "daisyui": "^4.12.23",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-bg-patterns": "^0.3.0"
+  }
+}
