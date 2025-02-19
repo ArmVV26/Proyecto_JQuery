@@ -59,7 +59,7 @@ async function cargarPokemons() {
 
                 // Extraemos el id, el nombre, el/los tipo/s (en Español) y la URL de la imagen de cada Pokemon
                 const id = detalle.id;
-                const nombre = String(detalle.name).charAt(0).toUpperCase() + String(detalle.name).slice(1);
+                const nombre = detalle.name.charAt(0).toUpperCase() + String(detalle.name).slice(1);
                 const tipos = await obtenerTipoEsp(detalle.types);
                 const imagenUrl = detalle.sprites.front_default;
                 const peso = detalle.weight;
@@ -121,6 +121,7 @@ async function obtenerTipoEsp(urlTipo) {
  * @param {string} nombre Nombre del Pokemon
  * @param {string} tipos Tipo/s del Pokemon
  * @param {string} imagenUrl URL de la imagen del Pokemon 
+ * @param {number} peso Peso del Pokemon
  */
 function crearTarjetaPokemon(id, nombre, tipos, imagenUrl, peso) {
     // Creo la tarjeta de Pokemon
