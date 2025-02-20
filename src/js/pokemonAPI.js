@@ -1,4 +1,4 @@
-// Variables limite, indice y bandera para indica si se esta cargando
+// Variables limite, indice y bandera para indicar si se esta cargando
 const limite = 20;
 let indice = 0;
 let cargado = false
