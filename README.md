@@ -7,7 +7,7 @@
 > - Una estilada con **TailWindCSS**, que muestra el contenido obtenido desde una *API*, con **JavaScript** normal.
 > - Otra también estilada con **TailWindCSS** y mostrando el cotenido de una *API*, pero con **JQuery**.
 >
-> [Enlace Web](src/html)
+> [Enlace Web](https://github.com/ArmVV26/Proyecto_JQuery/blob/main/src/html/index.html)
 > 
 > Creado por: **Armando Vaquero Vargas**
 
