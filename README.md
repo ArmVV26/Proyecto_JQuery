@@ -22,7 +22,7 @@ El proyecto esta estructurado de la siguiente manera:
 - ***package.json***: Archivo que centraliza la configuracion del entorno de desarrollo del proyecto y automatiza diferentes tareas.
 - ***tailwind.config.css***: Archivo que configura ciertos aspectos de **TailWindCSS**, como variables o para añadir *plugin*.
 
-### 2. Configuración de TailWindCSS
+## 2. Configuración de TailWindCSS
 Para configurar tu web con **TailWindCSS**, es necesario hacer los siguientes pasos:
 
 ### 2.1. Configurar Node
@@ -164,5 +164,102 @@ daisyui: {
 },
 ```
 
-> Para configurar TailwindCSS es necesario usar un compilador (Vite), por que ya el fichero tailwind.config.js no existe se tiene que hacer desde el fichero vite.config.ts.
-> En el CSS es donde se tiene que agregar los plugins de la empresa (daisyui)
+### 2.4. Configuración del archivo CSS
+**TailWindCSS** usa un archivo **CSS** de entrada que tiene que contener las siguientes lineas:
+```css
+/* entrada.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+En mi proyecto para poder mostrar las tarjetas del main con un estilo predefinido, he creado los siguientes componentes:
+- ***.fondo-patron***: Aplica un patrón al fondo. Obtenido de [enlace](https://hillmann.cc/tailwindcss-bg-patterns/).
+- ***.efecto-tarjeta***: Aplica un efecto de transición y escalado para las tarjetas.
+- ***.tarjeta*** y sus elementos hijos: Aplica un estilo a las tarjetas que se muestran de los datos que se obtienen de la API.
+
+> Esto me permite: 
+> - Reutilizar el codigo para cada una de las tarjetas del main.
+> - *@apply* me permite inyectar clases de **TailWindCSS** dentro de una regla **CSS**.
+> - Con *@layer components* me asegura que los estilos se integren en la compilación de **TailWindCSS**.
+
+Todo esto quedaría de la siguiente manera:
+```css
+@layer components{
+    /* Patron para el fondo de la imagen de los pokemons */
+    .fondo-patron {
+        @apply pattern-isometric pattern-gray-300 pattern-bg-white pattern-size-16 pattern-opacity-100;
+    }   
+
+    /* Efecto de las tarjetas */
+    .efecto-tarjeta {
+        @apply transition-transform duration-300 ease-in-out cursor-pointer hover:scale-105 active:scale-95;
+    }
+
+    /* Estilo de las tarjetas */
+    .tarjeta {
+        @apply flex flex-col mt-5 overflow-hidden rounded-lg shadow-md text-base-content;
+    }
+
+    .tarjeta figure {
+        @apply flex justify-center fondo-patron;
+    }
+
+    .tarjeta img {
+        @apply object-contain w-32 h-32;
+    }
+
+    .tarjeta section {
+        @apply text-white bg-custom-black;
+    }
+
+    .tarjeta .nombre-id {
+        @apply flex items-center justify-between w-full px-4;
+    }
+
+    .tarjeta h1 {
+        @apply text-xl font-bold;
+    }
+    
+    .tarjeta h2 {
+        @apply text-xl italic font-bold text-custom-yellow;
+    }
+
+    .tarjeta .tipos {
+        @apply flex justify-center gap-2 py-2;
+    }
+    
+    .tarjeta .tipos p {
+        @apply px-3 py-1 rounded-lg;
+    }
+
+    .tarjeta .peso {
+        @apply w-full py-2 text-right;
+    }
+    
+    .tarjeta .peso p {
+        @apply px-3 py-1 text-sm opacity-60;
+    }
+}
+```
+
+### 2.5. Compilar TailWindCSS
+Para compilar **TailWindCSS** es necesario crear un *script* dentro del archivo ***package.json***:
+```json
+"vigilar:css": "npx tailwindcss -i ./src/css/entrada.css -o ./src/css/salida.css --watch",
+```
+
+Este comando compila **TailWindCSS**, toma de archivo de entrada ***entrada.css***, crea como salida ***salida.css*** y con ***--watch***, siempre está ejecutando cuando se guarda el archivo.  
+
+> [!NOTE]
+> En el ***index.html*** o el ***jquery.html***, se tiene que enlazar al archivo ***salida.css***.
+
+## 3. Configurar API en JavaScript
+La API que he usado es: [**PokAPI**](https://pokeapi.co/).
+En este caso el proceso que he seguido para mostrar el contenido de la API, se encuentra explicado con comentarios dentro de los ficheros ***pokemonAPI-JQuery.js*** y ***pokemonAPI.js***. En esta documentación lo que voy a comentar son las diferentes funciones y elementos que he usado realizar el proyecto.
+
+> [!NOTE]
+> 
+
+### 3.1. API - Funciones 
+Las funciones que he usado 
