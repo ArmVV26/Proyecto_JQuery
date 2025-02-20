@@ -55,8 +55,6 @@ async function cargarPokemons() {
                 // Convertimos la respuesta a JSON
                 const detalle = await respuestaDetalle.json();
         
-                console.log(detalle);
-
                 // Extraemos el id, el nombre, el/los tipo/s (en Español) y la URL de la imagen de cada Pokemon
                 const id = detalle.id;
                 const nombre = detalle.name.charAt(0).toUpperCase() + String(detalle.name).slice(1);
@@ -74,7 +72,9 @@ async function cargarPokemons() {
         }
 
         // Actualizamos el indice para la próxima carga
+        console.log("Antes: ", indice);
         indice += limite;
+        console.log("Despues: ", indice);
         
     // Capturamos y mostramos por consola cualquier error que se produzca al cargar la lista de Pokemon
     } catch (error) {
@@ -157,13 +157,14 @@ function crearTarjetaPokemon(id, nombre, tipos, imagenUrl, peso) {
 }
 
 // Evento que se dispara cuando se hace scroll en la pagina
-window.addEventListener("scroll", () => {
+const mostrarMas = () => {    
     // Si el scroll llega al final de la página, cargo más Pokemons
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    if (document.body.scrollHeight - window.innerHeight === window.scrollY) {
         cargarPokemons();
     }
-});
+}
 
+window.addEventListener('scroll', mostrarMas);
   
 // Comineza la carga de la lista de Pokemons
 cargarPokemons();

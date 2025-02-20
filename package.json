@@ -9,7 +9,7 @@
     "parcel:prod": "parcel build ./src/html/jquery.html --dist-dir compilado/produccion",
     "limpia:des": "rimraf compilado/desarrollo .parcel-cache",
     "limpia:prod": "rimraf compilado/produccion .parcel-cache",
-    "des": "run-s limpia:des parcel:des",
+    "dev": "run-s limpia:des parcel:des",
     "prod": "run-s limpia:prod parcel:prod"
   },
   "repository": {

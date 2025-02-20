@@ -48,7 +48,7 @@ const traduccionTipos = {
     ground: 'Tierra',
     poison: 'Veneno',
     flying: 'Volador'
-  };
+}
 
 /**
  * @function
@@ -152,10 +152,12 @@ function crearTarjetaPokemon(id, nombre, tipos, imagenUrl, peso) {
 }
 
 // Evento para cargar mas Pokemons al hacer scroll en la pagina
-$(window).on("scroll", function() {
-    if ($(window).height() + $(window).scrollTop() >= $(document).height()) {
+function mostrarMas() {
+    if ($(document).height() - $(window).height() === $(window).scrollTop()) {
       cargarPokemons();
     }
-});
+}
+
+$(window).on("scroll", mostrarMas);
 
 cargarPokemons();

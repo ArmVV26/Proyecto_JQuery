@@ -61,21 +61,21 @@ export default {
       'footer': '0 -5px 5px 0 rgba(0, 0, 0, 0.2)',
     }
   },
-    plugins: [
-      require('daisyui'),
-      require('tailwindcss-bg-patterns')
+  plugins: [
+    require('daisyui'),
+    require('tailwindcss-bg-patterns')
+  ],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          "primary": "#FF3B30", // Color del Header
+          "secondary": "#AB2720", // Color del Footer
+          "neutral": "#FAEFEF", // Hover Fondo
+          "neutral-content": "#181818", // Letra Active 
+          "base-content": "#FAEFEF", // Letra 
+        }
+      },
     ],
-    daisyui: {
-      themes: [
-        {
-          mytheme: {
-            "primary": "#FF3B30", // Color del Header
-            "secondary": "#AB2720", // Color del Footer
-            "neutral": "#FAEFEF", // Hover Fondo
-            "neutral-content": "#181818", // Letra Active 
-            "base-content": "#FAEFEF", // Letra 
-          }
-        },
-      ],
-    },
+  },
 }
